@@ -1,5 +1,5 @@
 # Gherkin Beautifier VS Code Plugin
-Beautifies the Gherkin / Cucumber files on saving the .feature file.
+Beautifies the Gherkin / Cucumber files on saving the .feature file for Visual Studio Code at https://marketplace.visualstudio.com/items?itemName=siarheikuchuk.gherkin-beautifier-vs-code-plugin.
 
 ![Demostration of using this extension](https://raw.githubusercontent.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/master/demo.gif)
 

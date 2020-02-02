@@ -2,7 +2,7 @@
   "name": "gherkin-beautifier-vs-code-plugin",
   "displayName": "Gherkin Beautifier",
   "description": "Gherkin Beautifier VS Code Plugin for indetation of Gherkin/Cucumber files",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "publisher": "siarheikuchuk",
   "engines": {
     "vscode": "^0.10.1"
