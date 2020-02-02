@@ -1,41 +1,29 @@
 # Gherkin Beautifier VS Code Plugin
-Beautifies the Gherkin / Cucumber files.
+Beautifies the Gherkin / Cucumber files on saving the .feature file.
 
 ![Demostration of using this extension](https://raw.githubusercontent.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/master/demo.gif)
 
 ## Usage
-You can use both command palette or keyboard shortcuts to converts indentation. We recommend bind to keyboard shortcuts if you need to convert indentation frequently.
+Plugin will be invoked upon saving the .feature file.
 
-### Run with Command Palette
+### Indents can be configured via the following settings
 
-* Press `F1` or `Ctrl+Shift+P` for Command Palette
-* Type or find "Beautify Gherkin / Cucumber file"
-
-### Binding to keyboard shortcuts
-
-* File > Preferences > Keyboard Shortcuts
-* Append the following into `keybindings.json`
-
-```js
-{
-  "key": "ctrl+shift+2",
-  "command": "Gherkin-Beautifier-VS-Code-Plugin.beautify",
-  "when": "editorFocus"
-}
-```
-
-### Autoformat on save
-
-To enable auto fixing tslint errors on save, In VS Code set:
-
-```js
-"editor.codeActionsOnSave": {
-    "source.Gherkin-Beautifier-VS-Code-Plugin.beautify": true
-}
-```
+| Setting                             | Description                                                 | Default value  |
+| ----------------------------------- |:-----------------------------------------------------------:| --------------:|
+| conf.view.indentSymbol              | What identation symbol to use (tab or space)                |          space |
+| conf.view.identsBefore.Feature      | How many identation symbols to insert before 'Feature'      |              0 |
+| conf.view.identsBefore.Rule         | How many identation symbols to insert before 'Rule'         |              4 |
+| conf.view.identsBefore.Scenario     | How many identation symbols to insert before 'Scenario'     |              8 |
+| conf.view.identsBefore.Given        | How many identation symbols to insert before 'Given'        |             12 |
+| conf.view.identsBefore.When         | How many identation symbols to insert before 'When'         |             13 |
+| conf.view.identsBefore.Then         | How many identation symbols to insert before 'Then'         |             13 |
+| conf.view.identsBefore.And          | How many identation symbols to insert before 'And'          |             14 |
+| conf.view.identsBefore.But          | How many identation symbols to insert before 'But'          |             14 |
+| conf.view.identsBefore.At           | How many identation symbols to insert before 'At'           |              8 |
+| conf.view.identsBefore.Table        | How many identation symbols to insert before 'Table'        |             18 |
 
 ## Change log
-* 0.0.1 (2020-02-02): Initial release (February 2020)
+* 0.0.2 (2020-02-02): Initial release (February 2020)
 
 ## Contributions
 Love this extension? [Star](https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/stargazers) us!

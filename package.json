@@ -3,7 +3,7 @@
   "displayName": "Gherkin Beautifier",
   "description": "Gherkin Beautifier VS Code Plugin for indetation of Gherkin/Cucumber files",
   "version": "0.1.2",
-  "publisher": "Siarhei Kuchuk",
+  "publisher": "siarheikuchuk",
   "engines": {
     "vscode": "^0.10.1"
   },
@@ -25,7 +25,7 @@
   "bugs": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/issues/",
   "homepage": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/blob/master/README.md",
   "activationEvents": [
-    "onCommand:Gherkin-Beautifier-VS-Code-Plugin.beautify"
+    "*"
   ],
   "main": "./extension",
   "contributes": {
@@ -43,19 +43,67 @@
             "description": "What identation symbol to use",
             "scope": "window"
           },
-          "conf.view.identsBeforeWhen": {
+          "conf.view.identsBefore.Feature": {
             "type": "number",
-            "default": "6",
-            "description": "How much identation symbols to insert before 'When'",
+            "default": "0",
+            "description": "How many identation symbols to insert before 'Feature'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.Rule": {
+            "type": "number",
+            "default": "4",
+            "description": "How many identation symbols to insert before 'Rule'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.Scenario": {
+            "type": "number",
+            "default": "8",
+            "description": "How many identation symbols to insert before 'Scneario'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.Given": {
+            "type": "number",
+            "default": "12",
+            "description": "How many identation symbols to insert before 'Given'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.When": {
+            "type": "number",
+            "default": "13",
+            "description": "How many identation symbols to insert before 'When'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.Then": {
+            "type": "number",
+            "default": "13",
+            "description": "How many identation symbols to insert before 'Then'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.And": {
+            "type": "number",
+            "default": "14",
+            "description": "How many identation symbols to insert before 'And'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.But": {
+            "type": "number",
+            "default": "14",
+            "description": "How many identation symbols to insert before 'But'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.At": {
+            "type": "number",
+            "default": "8",
+            "description": "How many identation symbols to insert before '@'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.Table": {
+            "type": "number",
+            "default": "18",
+            "description": "How many identation symbols to insert before table '|'",
             "scope": "window"
           }
         }
-      }
-    ],
-    "commands": [
-      {
-        "command": "Gherkin-Beautifier-VS-Code-Plugin.beautify",
-        "title": "Beautify Gherkin / Cucumber file"
       }
     ]
   },
