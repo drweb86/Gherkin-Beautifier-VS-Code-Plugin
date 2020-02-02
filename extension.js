@@ -7,7 +7,8 @@ function activate(context) {
 }
 
 function willSaveTextDocument(e) {
-  if (!vscode.window.activeTextEditor) {
+  const textEditor = vscode.window.activeTextEditor;
+  if (!textEditor) {
     return null;
   }
 
@@ -16,9 +17,7 @@ function willSaveTextDocument(e) {
     return null;
   }
 
-  const textEditor = vscode.window.activeTextEditor;
-  if (!textEditor ||
-    textEditor.document.uri.toString() !== document.uri.toString()) {
+  if (textEditor.document.uri.toString() !== document.uri.toString()) {
     return null;
   }
 
