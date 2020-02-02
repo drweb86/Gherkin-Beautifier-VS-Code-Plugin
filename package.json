@@ -1,0 +1,65 @@
+{
+  "name": "gherkin-beautifier-vs-code-plugin",
+  "displayName": "Gherkin Beautifier",
+  "description": "Gherkin Beautifier VS Code Plugin for indetation of Gherkin/Cucumber files",
+  "version": "0.1.2",
+  "publisher": "Siarhei Kuchuk",
+  "engines": {
+    "vscode": "^0.10.1"
+  },
+  "icon": "icon.png",
+  "galleryBanner.color": "#0D5CAB",
+  "keywords": [
+    "indent",
+    "tab",
+    "space",
+    "spacing"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin.git"
+  },
+  "bugs": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/issues/",
+  "homepage": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/blob/master/README.md",
+  "activationEvents": [
+    "onCommand:Gherkin-Beautifier-VS-Code-Plugin.beautify"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "configuration": [
+      {
+        "title": "Gherkin Beautifier VS Code Plugin Configuration",
+        "properties": {
+          "conf.view.indentSymbol": {
+            "type": "string",
+            "enum": [
+              "space",
+              "tab"
+            ],
+            "default": "space",
+            "description": "What identation symbol to use",
+            "scope": "window"
+          },
+          "conf.view.identsBeforeWhen": {
+            "type": "number",
+            "default": "6",
+            "description": "How much identation symbols to insert before 'When'",
+            "scope": "window"
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "Gherkin-Beautifier-VS-Code-Plugin.beautify",
+        "title": "Beautify Gherkin / Cucumber file"
+      }
+    ]
+  },
+  "devDependencies": {
+    "vscode": "^0.11.x"
+  }
+}
