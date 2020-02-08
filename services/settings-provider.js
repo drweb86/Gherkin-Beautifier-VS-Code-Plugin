@@ -28,6 +28,22 @@ class SettingsProvider {
                 prefixIndents: StringUtil.createLine(+configuration.get('conf.view.identsBefore.Scenario'), indentChar)
             },
             {
+                prefix: 'Examples',
+                prefixIndents: StringUtil.createLine(+configuration.get('conf.view.identsBefore.Examples'), indentChar)
+            },
+            {
+                prefix: 'Background',
+                prefixIndents: StringUtil.createLine(+configuration.get('conf.view.identsBefore.Background'), indentChar)
+            },
+            {
+                prefix: 'Scenario Outline',
+                prefixIndents: StringUtil.createLine(+configuration.get('conf.view.identsBefore.ScenarioOutline'), indentChar)
+            },
+            {
+                prefix: 'Scenario Template',
+                prefixIndents: StringUtil.createLine(+configuration.get('conf.view.identsBefore.ScenarioTemplate'), indentChar)
+            },
+            {
                 prefix: 'Given',
                 prefixIndents: StringUtil.createLine(+configuration.get('conf.view.identsBefore.Given'), indentChar)
             },

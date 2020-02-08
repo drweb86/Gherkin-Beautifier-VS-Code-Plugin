@@ -57,7 +57,7 @@ exports.deactivate = deactivate;
 
 /**
  * @param {string} line
- * @param {Settings} settings - The string
+ * @param {Settings} settings
  */
 function applyFormatting(line, settings) {
   const updatedLine = StringUtil.trimAny(line, ['\t', ' ']);

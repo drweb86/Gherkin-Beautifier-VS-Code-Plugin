@@ -61,6 +61,30 @@
             "description": "How many identation symbols to insert before 'Scneario'",
             "scope": "window"
           },
+          "conf.view.identsBefore.Examples": {
+            "type": "number",
+            "default": "8",
+            "description": "How many identation symbols to insert before 'Examples'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.Background": {
+            "type": "number",
+            "default": "8",
+            "description": "How many identation symbols to insert before 'Background'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.ScenarioOutline": {
+            "type": "number",
+            "default": "8",
+            "description": "How many identation symbols to insert before 'Scenario Outline'",
+            "scope": "window"
+          },
+          "conf.view.identsBefore.ScenarioTemplate": {
+            "type": "number",
+            "default": "8",
+            "description": "How many identation symbols to insert before 'Scenario Template'",
+            "scope": "window"
+          },
           "conf.view.identsBefore.Given": {
             "type": "number",
             "default": "12",
