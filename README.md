@@ -10,6 +10,8 @@ Plugin will be invoked upon saving the .feature file.
 
 You can put settings in the .workspace or .vscode file of your projects, so all your team will get them.
 
+#### Indentation
+
 | Setting                                  | Description                                                      | Default value  |
 | ---------------------------------------- |:----------------------------------------------------------------:| --------------:|
 | conf.view.indentSymbol                   | What identation symbol to use (tab or space)                     |          space |
@@ -28,10 +30,17 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 | conf.view.identsBefore.At                | How many identation symbols to insert before 'At'                |              8 |
 | conf.view.identsBefore.Table             | How many identation symbols to insert before 'Table'             |             18 |
 
+#### Validation
+
+| Setting                 | Description                                                                                                                                                                                                | Default value  |
+| ------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| --------------:|
+| conf.view.validate.tags | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. How to specify tags? Example 1: @debug @important-component. Example 2: @debug, @important-component |                |
+
 ## Change log
 * 2.0.0 (2020-02-08): 
 Plugin settings are reloaded on save. So upon switching branch with different settings/loading other projects, tool will load them.
 Full Gherkin language (en) support.
+Tags validation
 * 1.0.0 (2020-02-02): Initial release
 
 ## Contributions

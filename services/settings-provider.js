@@ -72,9 +72,13 @@ class SettingsProvider {
                 prefixIndents: StringUtil.createLine(+configuration.get('conf.view.identsBefore.Table'), indentChar)
             },
         ];
+
+        const validateTags = StringUtil.splitToTokens(configuration.get('conf.view.validate.tags'));
+
         return new Settings(
             indentChar,
-            startingSymbolToIndentsNumberMapping
+            startingSymbolToIndentsNumberMapping,
+            validateTags.length === 0 ? null : validateTags
         );
     }
 }

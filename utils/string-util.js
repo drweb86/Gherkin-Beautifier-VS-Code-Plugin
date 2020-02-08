@@ -2,6 +2,15 @@
 'use strict';
 
 class StringUtil {
+    /**
+    * @param {string} str
+    * @returns {Array.<string>}
+    */
+    static splitToTokens(str) {
+        return str
+            .split(/[\s,]+/)
+            .filter(z => z != '');
+    }
 
     /**
     * @param {number} length

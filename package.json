@@ -31,7 +31,7 @@
   "contributes": {
     "configuration": [
       {
-        "title": "Gherkin Beautifier VS Code Plugin Configuration",
+        "title": "Gherkin Beautifier",
         "properties": {
           "conf.view.indentSymbol": {
             "type": "string",
@@ -40,92 +40,82 @@
               "tab"
             ],
             "default": "space",
-            "description": "What identation symbol to use",
-            "scope": "window"
+            "description": "What identation symbol to use"
           },
           "conf.view.identsBefore.Feature": {
             "type": "number",
             "default": "0",
-            "description": "How many identation symbols to insert before 'Feature'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'Feature'"
           },
           "conf.view.identsBefore.Rule": {
             "type": "number",
             "default": "4",
-            "description": "How many identation symbols to insert before 'Rule'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'Rule'"
           },
           "conf.view.identsBefore.Scenario": {
             "type": "number",
             "default": "8",
-            "description": "How many identation symbols to insert before 'Scneario'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'Scneario'"
           },
           "conf.view.identsBefore.Examples": {
             "type": "number",
             "default": "8",
-            "description": "How many identation symbols to insert before 'Examples'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'Examples'"
           },
           "conf.view.identsBefore.Background": {
             "type": "number",
             "default": "8",
-            "description": "How many identation symbols to insert before 'Background'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'Background'"
           },
           "conf.view.identsBefore.ScenarioOutline": {
             "type": "number",
             "default": "8",
-            "description": "How many identation symbols to insert before 'Scenario Outline'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'Scenario Outline'"
           },
           "conf.view.identsBefore.ScenarioTemplate": {
             "type": "number",
             "default": "8",
-            "description": "How many identation symbols to insert before 'Scenario Template'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'Scenario Template'"
           },
           "conf.view.identsBefore.Given": {
             "type": "number",
             "default": "12",
-            "description": "How many identation symbols to insert before 'Given'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'Given'"
           },
           "conf.view.identsBefore.When": {
             "type": "number",
             "default": "13",
-            "description": "How many identation symbols to insert before 'When'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'When'"
           },
           "conf.view.identsBefore.Then": {
             "type": "number",
             "default": "13",
-            "description": "How many identation symbols to insert before 'Then'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'Then'"
           },
           "conf.view.identsBefore.And": {
             "type": "number",
             "default": "14",
-            "description": "How many identation symbols to insert before 'And'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'And'"
           },
           "conf.view.identsBefore.But": {
             "type": "number",
             "default": "14",
-            "description": "How many identation symbols to insert before 'But'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before 'But'"
           },
           "conf.view.identsBefore.At": {
             "type": "number",
             "default": "8",
-            "description": "How many identation symbols to insert before '@'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before '@'"
           },
           "conf.view.identsBefore.Table": {
             "type": "number",
             "default": "18",
-            "description": "How many identation symbols to insert before table '|'",
-            "scope": "window"
+            "description": "How many identation symbols to insert before table '|'"
+          },
+          "conf.view.validate.tags": {
+            "type": "string",
+            "default": "",
+            "description": "Validates if all tags are from allowed tags list and show warning messages upon saving feature files. How to specify tags? Example 1: @debug @important-component. Example 2: @debug, @important-component"
           }
         }
       }

@@ -31,6 +31,10 @@ function willSaveTextDocument(e) {
 
   textEditor.edit(editBuilder => {
     fixAll(document, editBuilder, settings);
+
+    if (settings.validateTags) {
+      validateTags(document, settings.validateTags);
+    }
   });
 }
 
@@ -50,6 +54,25 @@ function fixAll(document, editBuilder, settings) {
       );
     }
   }
+}
+
+function validateTags(document, allowedTags) {
+  const allTagsInFile = [];
+
+  for (let lineNumber = 0, lineCount = document.lineCount; lineNumber < lineCount; lineNumber++) {
+    let line = document.lineAt(lineNumber).text;
+    line = StringUtil.trimAny(line, ['\t', ' ']);
+    if (line.startsWith('@')) {
+      allTagsInFile.push(...StringUtil.splitToTokens(line));
+    }
+  }
+
+  const notAllowedTags = allTagsInFile.filter(z => allowedTags.indexOf(z) === -1);
+  if (notAllowedTags.length === 0) {
+    return;
+  }
+  const complaint = `${notAllowedTags.join(', ')} tag(s) are not allowed. Allowed tags are ${allowedTags.join(', ')} (adjust setting conf.view.validate.tags for reference).`;
+  vscode.window.showErrorMessage(complaint);
 }
 
 function deactivate() { };
