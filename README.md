@@ -1,12 +1,14 @@
 # Gherkin Beautifier VS Code Plugin
-Beautifies the Gherkin / Cucumber files on saving the .feature file for Visual Studio Code at https://marketplace.visualstudio.com/items?itemName=siarheikuchuk.gherkin-beautifier-vs-code-plugin.
+The plugin for Visual Studio Code that beautifies the Gherkin / Cucumber .feature files on saving them. Located at https://marketplace.visualstudio.com/items?itemName=siarheikuchuk.gherkin-beautifier-vs-code-plugin.
 
 ![Demostration of using this extension](https://raw.githubusercontent.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/master/demo.gif)
 
 ## Usage
 Plugin will be invoked upon saving the .feature file.
 
-### Indents can be configured via the following settings
+### Settings
+
+You can put settings in the .workspace or .vscode file of your projects, so all your team will get them.
 
 | Setting                             | Description                                                 | Default value  |
 | ----------------------------------- |:-----------------------------------------------------------:| --------------:|
@@ -23,7 +25,8 @@ Plugin will be invoked upon saving the .feature file.
 | conf.view.identsBefore.Table        | How many identation symbols to insert before 'Table'        |             18 |
 
 ## Change log
-* 0.0.2 (2020-02-02): Initial release (February 2020)
+* 2.0.0 (2020-02-08): Plugin settings are reloaded on save. So upon switching branch with different settings/loading other projects, tool will load them.
+* 1.0.0 (2020-02-02): Initial release
 
 ## Contributions
 Love this extension? [Star](https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/stargazers) us!

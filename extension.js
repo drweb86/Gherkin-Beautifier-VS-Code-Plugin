@@ -1,10 +1,14 @@
 'use strict';
 
 const vscode = require('vscode');
+const { Settings } = require('./models/settings');
+const { SettingsProvider } = require('./services/settings-provider');
+const { StringUtil } = require('./utils/string-util');
 
 function activate(context) {
   context.subscriptions.push(vscode.workspace.onWillSaveTextDocument(willSaveTextDocument));
 }
+exports.activate = activate;
 
 function willSaveTextDocument(e) {
   const textEditor = vscode.window.activeTextEditor;
@@ -21,8 +25,12 @@ function willSaveTextDocument(e) {
     return null;
   }
 
+  // settings could have been changed, so we gotta reread them.
+  const settingsProvider = new SettingsProvider();
+  const settings = settingsProvider.getSettings();
+
   textEditor.edit(editBuilder => {
-    fixAll(document, editBuilder);
+    fixAll(document, editBuilder, settings);
   });
 }
 
@@ -30,97 +38,31 @@ function isFeatureFile(document) {
   return document.uri.fsPath.endsWith('.feature');
 }
 
-function fixAll(document, editBuilder) {
+function fixAll(document, editBuilder, settings) {
   for (let lineNumber = 0, lineCount = document.lineCount; lineNumber < lineCount; lineNumber++) {
     const line = document.lineAt(lineNumber).text;
-    const fixedLine = applyFormatting(line);
+    const fixedLine = applyFormatting(line, settings);
 
     if (line != fixedLine) {
       editBuilder.replace(
         new vscode.Range(lineNumber, 0, lineNumber, line.length),
-        applyFormatting(line)
+        fixedLine
       );
     }
   }
 }
 
-exports.activate = activate;
-
-function deactivate() {
-}
-
+function deactivate() { };
 exports.deactivate = deactivate;
 
-const identSymbol = vscode.workspace.getConfiguration().get('conf.view.indentSymbol') === 'tab' ? '\t' : ' ';
-function createLine(length) {
-  let str = '';
-  while (length > 0) {
-    str += identSymbol;
-    length--;
-  }
-  return str;
-}
-
-const extensionStartingSymbolToIndentsNumberMapping = [
-  {
-    prefix: 'Feature',
-    prefixIndents: createLine(+vscode.workspace.getConfiguration().get('conf.view.identsBefore.Feature'))
-  },
-  {
-    prefix: 'Rule',
-    prefixIndents: createLine(+vscode.workspace.getConfiguration().get('conf.view.identsBefore.Rule'))
-  },
-  {
-    prefix: 'Scenario',
-    prefixIndents: createLine(+vscode.workspace.getConfiguration().get('conf.view.identsBefore.Scenario'))
-  },
-  {
-    prefix: 'Given',
-    prefixIndents: createLine(+vscode.workspace.getConfiguration().get('conf.view.identsBefore.Given'))
-  },
-  {
-    prefix: 'When',
-    prefixIndents: createLine(+vscode.workspace.getConfiguration().get('conf.view.identsBefore.When'))
-  },
-  {
-    prefix: 'Then',
-    prefixIndents: createLine(+vscode.workspace.getConfiguration().get('conf.view.identsBefore.Then'))
-  },
-  {
-    prefix: 'And',
-    prefixIndents: createLine(+vscode.workspace.getConfiguration().get('conf.view.identsBefore.And'))
-  },
-  {
-    prefix: 'But',
-    prefixIndents: createLine(+vscode.workspace.getConfiguration().get('conf.view.identsBefore.But'))
-  },
-  {
-    prefix: '@',
-    prefixIndents: createLine(+vscode.workspace.getConfiguration().get('conf.view.identsBefore.At'))
-  },
-  {
-    prefix: '|',
-    prefixIndents: createLine(+vscode.workspace.getConfiguration().get('conf.view.identsBefore.Table'))
-  },
-];
-
-function trimAny(str, chars) {
-  var start = 0,
-    end = str.length;
-
-  while (start < end && chars.indexOf(str[start]) >= 0)
-    ++start;
-
-  while (end > start && chars.indexOf(str[end - 1]) >= 0)
-    --end;
-
-  return (start > 0 || end < str.length) ? str.substring(start, end) : str;
-}
-
-function applyFormatting(line) {
-  const updatedLine = trimAny(line, ['\t', ' ']);
-  for (let i = 0; i < extensionStartingSymbolToIndentsNumberMapping.length; i++) {
-    const replacement = extensionStartingSymbolToIndentsNumberMapping[i];
+/**
+ * @param {string} line
+ * @param {Settings} settings - The string
+ */
+function applyFormatting(line, settings) {
+  const updatedLine = StringUtil.trimAny(line, ['\t', ' ']);
+  for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {
+    const replacement = settings.startingSymbolToIndentsNumberMapping[i];
     if (updatedLine.startsWith(replacement.prefix)) {
       return replacement.prefixIndents + updatedLine;
     }
@@ -128,5 +70,3 @@ function applyFormatting(line) {
 
   return line;
 }
-
-exports.applyFormatting = applyFormatting;
