@@ -2,7 +2,7 @@
   "name": "gherkin-beautifier-vs-code-plugin",
   "displayName": "Gherkin Beautifier",
   "description": "Gherkin Beautifier is a VS Code Plugin for indentation of Gherkin/Cucumber .feature files",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "publisher": "siarheikuchuk",
   "engines": {
     "vscode": "^0.10.1"
@@ -116,6 +116,11 @@
             "type": "string",
             "default": "",
             "description": "Validates if all tags are from allowed tags list and show warning messages upon saving feature files. How to specify tags? Example 1: @debug @important-component. Example 2: @debug, @important-component"
+          },
+          "conf.view.validate.tagsFile": {
+            "type": "string",
+            "default": "",
+            "description": "Validates if all tags are from allowed tags list and show warning messages upon saving feature files. List of tags is specified by file. In a file tags should go one per line. Path to file is resolved relative to workspace folder"
           }
         }
       }

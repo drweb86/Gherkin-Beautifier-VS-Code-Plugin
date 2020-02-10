@@ -71,7 +71,7 @@ function validateTags(document, allowedTags) {
   if (notAllowedTags.length === 0) {
     return;
   }
-  const complaint = `${notAllowedTags.join(', ')} tag(s) are not allowed. Allowed tags are ${allowedTags.join(', ')} (adjust setting conf.view.validate.tags for reference).`;
+  const complaint = `${notAllowedTags.join(', ')} tag(s) are not allowed. Allowed tags are ${allowedTags.join(', ')} (adjust setting conf.view.validate.tags / conf.view.validate.tagsFile).`;
   vscode.window.showErrorMessage(complaint);
 }
 

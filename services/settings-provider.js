@@ -2,7 +2,7 @@
 'use strict';
 
 const vscode = require('vscode');
-
+const fs = require('fs');
 const { Settings } = require('../models/settings');
 const { StringUtil } = require('../utils/string-util');
 
@@ -74,6 +74,25 @@ class SettingsProvider {
         ];
 
         const validateTags = StringUtil.splitToTokens(configuration.get('conf.view.validate.tags'));
+        let validateTagsFile = StringUtil.trimAny(configuration.get('conf.view.validate.tagsFile'), [' ']);
+        if (validateTagsFile !== '') {
+            validateTagsFile = vscode.workspace.rootPath + '/' + validateTagsFile;
+            if (!fs.existsSync(validateTagsFile)) {
+                const complaint = `File does not exist ${validateTagsFile}.`;
+                vscode.window.showErrorMessage(complaint);
+            }
+            const items = fs.readFileSync(validateTagsFile).toString().split("\n");
+            items.forEach(item => {
+                let trimmedItem = StringUtil.trimAny(item, ['\r', ' ']);
+                if (trimmedItem === '') {
+                    return;
+                }
+                if (!trimmedItem.startsWith('@')) {
+                    trimmedItem = `@${trimmedItem}`
+                };
+                validateTags.push(trimmedItem);
+            })
+        }
 
         return new Settings(
             indentChar,

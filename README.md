@@ -32,11 +32,14 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 
 #### Validation
 
-| Setting                 | Description                                                                                                                                                                                                | Default value  |
-| ------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| --------------:|
-| conf.view.validate.tags | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. How to specify tags? Example 1: @debug @important-component. Example 2: @debug, @important-component |                |
+| Setting                     | Description                                                                                                                                                                                                                            | Default value  |
+| ----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| --------------:|
+| conf.view.validate.tags     | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. How to specify tags? Example 1: @debug @important-component. Example 2: @debug, @important-component                             |                |
+| conf.view.validate.tagsFile | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. List of tags is specified by file. In a file tags should go one per line. Path to file is resolved relative to workspace folder  |                |
 
 ## Change log
+* 3.0.0 (2020-02-10): 
+Tags validation from file
 * 2.0.0 (2020-02-08): 
 Plugin settings are reloaded on save. So upon switching branch with different settings/loading other projects, tool will load them.
 Full Gherkin language (en) support.
