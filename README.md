@@ -12,23 +12,23 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 
 #### Indentation
 
-| Setting                                  | Description                                                      | Default value  |
-| ---------------------------------------- |:----------------------------------------------------------------:| --------------:|
-| conf.view.indentSymbol                   | What identation symbol to use (tab or space)                     |          space |
-| conf.view.identsBefore.Feature           | How many identation symbols to insert before 'Feature'           |              0 |
-| conf.view.identsBefore.Rule              | How many identation symbols to insert before 'Rule'              |              4 |
-| conf.view.identsBefore.Scenario          | How many identation symbols to insert before 'Scenario'          |              8 |
-| conf.view.identsBefore.Examples          | How many identation symbols to insert before 'Examples'          |              8 |
-| conf.view.identsBefore.Background        | How many identation symbols to insert before 'Background'        |              8 |
-| conf.view.identsBefore.ScenarioOutline   | How many identation symbols to insert before 'Scenario Outline'  |              8 |
-| conf.view.identsBefore.ScenarioTemplate  | How many identation symbols to insert before 'Scenario Template' |              8 |
-| conf.view.identsBefore.Given             | How many identation symbols to insert before 'Given'             |             12 |
-| conf.view.identsBefore.When              | How many identation symbols to insert before 'When'              |             13 |
-| conf.view.identsBefore.Then              | How many identation symbols to insert before 'Then'              |             13 |
-| conf.view.identsBefore.And               | How many identation symbols to insert before 'And'               |             14 |
-| conf.view.identsBefore.But               | How many identation symbols to insert before 'But'               |             14 |
-| conf.view.identsBefore.At                | How many identation symbols to insert before 'At'                |              8 |
-| conf.view.identsBefore.Table             | How many identation symbols to insert before 'Table'             |             18 |
+| Setting                                  | Description                                                                                                     | Default value  |
+| ---------------------------------------- |:---------------------------------------------------------------------------------------------------------------:| --------------:|
+| conf.view.indentSymbol                   | What identation symbol to use (tab or space)                                                                    |          space |
+| conf.view.identsBefore.Feature           | How many identation symbols to insert before 'Feature'                                                          |              0 |
+| conf.view.identsBefore.Rule              | How many identation symbols to insert before 'Rule'                                                             |              4 |
+| conf.view.identsBefore.Scenario          | How many identation symbols to insert before 'Scenario'                                                         |              8 |
+| conf.view.identsBefore.Examples          | How many identation symbols to insert before 'Examples'                                                         |              8 |
+| conf.view.identsBefore.Background        | How many identation symbols to insert before 'Background'                                                       |              8 |
+| conf.view.identsBefore.ScenarioOutline   | How many identation symbols to insert before 'Scenario Outline'                                                 |              8 |
+| conf.view.identsBefore.ScenarioTemplate  | How many identation symbols to insert before 'Scenario Template'                                                |              8 |
+| conf.view.identsBefore.Given             | How many identation symbols to insert before 'Given'                                                            |             12 |
+| conf.view.identsBefore.When              | How many identation symbols to insert before 'When'                                                             |             13 |
+| conf.view.identsBefore.Then              | How many identation symbols to insert before 'Then'                                                             |             13 |
+| conf.view.identsBefore.And               | How many identation symbols to insert before 'And'                                                              |             14 |
+| conf.view.identsBefore.But               | How many identation symbols to insert before 'But'                                                              |             14 |
+| conf.view.identsBefore.Tag               | How many identation symbols to insert before @ tags. Allowed values: amount of indentation chars or 'relative'  |       relative |
+| conf.view.identsBefore.Table             | How many identation symbols to insert before 'Table'                                                            |             18 |
 
 #### Validation
 
@@ -38,6 +38,8 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 | conf.view.validate.tagsFile | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. List of tags is specified by file. In a file tags should go one per line. Path to file is resolved relative to workspace folder  |                |
 
 ## Change log
+* 4.0.0 (2020-05-17):
+conf.view.identsBefore.At renamed to conf.view.identsBefore.Tags. Default value has changed to 'relative'.
 * 3.0.0 (2020-02-10): 
 Tags validation from file
 * 2.0.0 (2020-02-08): 

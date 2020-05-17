@@ -2,7 +2,7 @@
   "name": "gherkin-beautifier-vs-code-plugin",
   "displayName": "Gherkin Beautifier",
   "description": "Gherkin Beautifier is a VS Code Plugin for indentation of Gherkin/Cucumber .feature files",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "publisher": "siarheikuchuk",
   "engines": {
     "vscode": "^0.10.1"
@@ -102,10 +102,10 @@
             "default": "14",
             "description": "How many identation symbols to insert before 'But'"
           },
-          "conf.view.identsBefore.At": {
-            "type": "number",
-            "default": "8",
-            "description": "How many identation symbols to insert before '@'"
+          "conf.view.identsBefore.Tag": {
+            "type": "string",
+            "default": "relative",
+            "description": "How many identation symbols to insert before @ tags. Allowed values: amount of indentation chars or 'relative'"
           },
           "conf.view.identsBefore.Table": {
             "type": "number",

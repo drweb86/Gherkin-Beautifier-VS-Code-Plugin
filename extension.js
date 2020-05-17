@@ -30,6 +30,7 @@ function willSaveTextDocument(e) {
   const settings = settingsProvider.getSettings();
 
   textEditor.edit(editBuilder => {
+    console.log(1);
     fixAll(document, editBuilder, settings);
 
     if (settings.validateTags) {
@@ -43,10 +44,34 @@ function isFeatureFile(document) {
 }
 
 function fixAll(document, editBuilder, settings) {
+  const text = [];
+  const textToReplace = [];
+
+  // populate
   for (let lineNumber = 0, lineCount = document.lineCount; lineNumber < lineCount; lineNumber++) {
     const line = document.lineAt(lineNumber).text;
-    const fixedLine = applyFormatting(line, settings);
+    // @ts-ignore
+    text.push(line);
 
+    const trimmedLine = StringUtil.trimAny(line, ['\t', ' ']);
+    // @ts-ignore
+    textToReplace.push(trimmedLine);
+  }
+
+  // Basic Updates
+  for (let lineNumber = 0; lineNumber < text.length; lineNumber++) {
+    textToReplace[lineNumber] = applyBasicFormatting(textToReplace[lineNumber], settings);
+  }
+
+  // Relative Updates
+  for (let lineNumber = 0; lineNumber < text.length; lineNumber++) {
+    textToReplace[lineNumber] = applyRelativeFormatting(textToReplace, textToReplace[lineNumber], lineNumber, settings);
+  }
+
+  // update
+  for (let lineNumber = 0; lineNumber < text.length; lineNumber++) {
+    const line = text[lineNumber];
+    const fixedLine = textToReplace[lineNumber];
     if (line != fixedLine) {
       editBuilder.replace(
         new vscode.Range(lineNumber, 0, lineNumber, line.length),
@@ -78,17 +103,63 @@ function validateTags(document, allowedTags) {
 function deactivate() { };
 exports.deactivate = deactivate;
 
+
+/**
+ * @param {string[]} lines
+ * @param {string} line
+ * @param {Settings} settings
+ */
+function applyRelativeFormatting(lines, line, linePos, settings) {
+  const updatedLine = line;
+  for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {
+    const replacement = settings.startingSymbolToIndentsNumberMapping[i];
+    if (!replacement.isRelative ||
+      !updatedLine.startsWith(replacement.prefix)) {
+      continue;
+    }
+
+    const relativeLine = findFirstDifferentLine(lines, linePos + 1, replacement.prefix);
+    if (relativeLine == undefined) {
+      continue;
+    }
+
+    const prefix = getPrefix(relativeLine);
+    return prefix + line;
+  }
+
+  return line;
+}
+
+function getPrefix(line) {
+  const trimmedLine = StringUtil.trimAny(line, ['\t', ' ']);
+  return line.substr(0, line.length - trimmedLine.length);
+}
+
+function findFirstDifferentLine(lines, startIndex, prefix) {
+  for (let j = startIndex; j < lines.length; j++) {
+    if (lines[j] != '' &&
+      !lines[j].startsWith(prefix)) {
+      return lines[j];
+    }
+  }
+  return undefined;
+}
+
 /**
  * @param {string} line
  * @param {Settings} settings
  */
-function applyFormatting(line, settings) {
-  const updatedLine = StringUtil.trimAny(line, ['\t', ' ']);
+function applyBasicFormatting(line, settings) {
+  const updatedLine = line;
   for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {
     const replacement = settings.startingSymbolToIndentsNumberMapping[i];
-    if (updatedLine.startsWith(replacement.prefix)) {
-      return replacement.prefixIndents + updatedLine;
+    if (replacement.prefixIndents == undefined ||
+      replacement.isRelative ||
+      !updatedLine.startsWith(replacement.prefix)) {
+      continue;
     }
+
+    return replacement.prefixIndents + updatedLine;
   }
 
   return line;
