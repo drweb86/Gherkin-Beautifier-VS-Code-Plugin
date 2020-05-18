@@ -30,7 +30,6 @@ function willSaveTextDocument(e) {
   const settings = settingsProvider.getSettings();
 
   textEditor.edit(editBuilder => {
-    console.log(1);
     fixAll(document, editBuilder, settings);
 
     if (settings.validateTags) {
@@ -52,10 +51,18 @@ function fixAll(document, editBuilder, settings) {
     const line = document.lineAt(lineNumber).text;
     // @ts-ignore
     text.push(line);
+    textToReplace.push(line);
 
-    const trimmedLine = StringUtil.trimAny(line, ['\t', ' ']);
-    // @ts-ignore
-    textToReplace.push(trimmedLine);
+    // trimming spaces for known prefixes.
+    for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {
+      const replacement = settings.startingSymbolToIndentsNumberMapping[i];
+      // @ts-ignore
+      const trimmedLine = StringUtil.trimAny(line, ['\t', ' ']);
+      if (trimmedLine.startsWith(replacement.prefix)) {
+        textToReplace[lineNumber] = trimmedLine;
+        break;
+      }
+    }
   }
 
   // Basic Updates
