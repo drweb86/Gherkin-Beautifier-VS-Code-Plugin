@@ -1,5 +1,5 @@
 export interface KeywordIndent {
-    prefix: string;
+    keywords: string[];
     prefixIndents: string | undefined;
     isRelative: boolean;
 }

@@ -1,5 +1,5 @@
 # Gherkin Beautifier VS Code Plugin
-The plugin for Visual Studio Code that beautifies the Gherkin / Cucumber .feature files on saving them. Located at https://marketplace.visualstudio.com/items?itemName=siarheikuchuk.gherkin-beautifier-vs-code-plugin.
+The multilingual plugin for Visual Studio Code that beautifies the Gherkin / Cucumber .feature files on saving them. Located at https://marketplace.visualstudio.com/items?itemName=siarheikuchuk.gherkin-beautifier-vs-code-plugin.
 
 ![Demostration of using this extension](https://raw.githubusercontent.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/master/demo.gif)
 
@@ -21,7 +21,6 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 | conf.view.identsBefore.Examples          | How many identation symbols to insert before 'Examples'                                                         |              8 |
 | conf.view.identsBefore.Background        | How many identation symbols to insert before 'Background'                                                       |              8 |
 | conf.view.identsBefore.ScenarioOutline   | How many identation symbols to insert before 'Scenario Outline'                                                 |              8 |
-| conf.view.identsBefore.ScenarioTemplate  | How many identation symbols to insert before 'Scenario Template'                                                |              8 |
 | conf.view.identsBefore.Given             | How many identation symbols to insert before 'Given'                                                            |             12 |
 | conf.view.identsBefore.When              | How many identation symbols to insert before 'When'                                                             |             13 |
 | conf.view.identsBefore.Then              | How many identation symbols to insert before 'Then'                                                             |             13 |
@@ -38,6 +37,10 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 | conf.view.validate.tagsFile | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. List of tags is specified by file. In a file tags should go one per line. Path to file is resolved relative to workspace folder  |                |
 
 ## Change log
+* 5.0.0 (2020-06-07):
+Migrate to TypeScript
+Add support for languages. Languages were taken from Cucumber project under MIT License https://raw.githubusercontent.com/cucumber/cucumber/master/gherkin/gherkin-languages.json
+conf.view.identsBefore.ScenarioTemplate was removed (it is a variant of English translation for conf.view.identsBefore.ScenarioOutline).
 * 4.0.0 (2020-05-17):
 conf.view.identsBefore.At renamed to conf.view.identsBefore.Tags. Default value has changed to 'relative'.
 * 3.0.0 (2020-02-10): 
