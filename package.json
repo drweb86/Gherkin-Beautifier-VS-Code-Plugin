@@ -4,8 +4,14 @@
   "description": "Gherkin Beautifier is a VS Code Plugin for indentation of Gherkin/Cucumber .feature files",
   "version": "4.0.1",
   "publisher": "siarheikuchuk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin.git"
+  },
+  "bugs": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/issues/",
+  "homepage": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/blob/master/README.md",
   "engines": {
-    "vscode": "^0.10.1"
+    "vscode": "^1.34.0"
   },
   "icon": "icon.png",
   "galleryBanner.color": "#0D5CAB",
@@ -18,16 +24,10 @@
   "categories": [
     "Other"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin.git"
-  },
-  "bugs": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/issues/",
-  "homepage": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/blob/master/README.md",
   "activationEvents": [
     "*"
   ],
-  "main": "./extension",
+  "main": "./out/extension.js",
   "contributes": {
     "configuration": [
       {
@@ -126,7 +126,18 @@
       }
     ]
   },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint . --ext .ts,.tsx",
+    "watch": "tsc -watch -p ./"
+  },
   "devDependencies": {
-    "vscode": "^0.11.x"
+    "@types/node": "^12.12.44",
+    "@types/vscode": "^1.34.0",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
+    "eslint": "^7.1.0",
+    "typescript": "^3.9.4"
   }
 }
