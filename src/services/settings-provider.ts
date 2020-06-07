@@ -3,78 +3,73 @@ import { StringUtil } from '../utils/string-util';
 import * as vscode from 'vscode';
 import fs = require('fs');
 import { KeywordIndent } from '../models/keyword-indent';
+import { LanguageService } from './language-service';
 
 export class SettingsProvider {
-    private readNumberSetting(configuration: vscode.WorkspaceConfiguration, settingName: string, defualtValue: number): number {
-        return configuration.get<number>(settingName) ?? defualtValue;
-    }
+    get settings(): Settings {
 
-    getSettings(): Settings {
+        const languageService = new LanguageService();
+
         const configuration = vscode.workspace.getConfiguration();
         const indentChar = configuration.get('conf.view.indentSymbol') === 'tab' ? '\t' : ' ';
         const startingSymbolToIndentsNumberMapping: KeywordIndent[] = [
             {
-                prefix: 'Feature',
+                keywords: languageService.getTranslations('feature'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Feature', 0), indentChar),
                 isRelative: false,
             },
             {
-                prefix: 'Rule',
+                keywords: languageService.getTranslations('rule'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Rule', 4), indentChar),
                 isRelative: false,
             },
             {
-                prefix: 'Scenario',
+                keywords: languageService.getTranslations('scenario'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Scenario', 8), indentChar),
                 isRelative: false,
             },
             {
-                prefix: 'Examples',
+                keywords: languageService.getTranslations('examples'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Examples', 8), indentChar),
                 isRelative: false,
             },
             {
-                prefix: 'Background',
+                keywords: languageService.getTranslations('background'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Background', 8), indentChar),
                 isRelative: false,
             },
             {
-                prefix: 'Scenario Outline',
+                keywords: languageService.getTranslations('scenarioOutline'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.ScenarioOutline', 8), indentChar),
                 isRelative: false,
             },
             {
-                prefix: 'Scenario Template',
-                prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.ScenarioTemplate', 8), indentChar),
-                isRelative: false,
-            },
-            {
-                prefix: 'Given',
+                keywords: languageService.getTranslations('given'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Given', 12), indentChar),
                 isRelative: false,
             },
             {
-                prefix: 'When',
+                keywords: languageService.getTranslations('when'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.When', 13), indentChar),
                 isRelative: false,
             },
             {
-                prefix: 'Then',
+                keywords: languageService.getTranslations('then'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Then', 13), indentChar),
                 isRelative: false,
             },
             {
-                prefix: 'And',
+                keywords: languageService.getTranslations('and'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.And', 14), indentChar),
                 isRelative: false,
             },
             {
-                prefix: 'But',
+                keywords: languageService.getTranslations('but'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.But', 14), indentChar),
                 isRelative: false,
             },
             {
-                prefix: '@',
+                keywords: ['@'],
                 prefixIndents: isNaN(configuration.get<any>('conf.view.identsBefore.Tag') ?? '') ?
                     undefined :
                     StringUtil.createLine(
@@ -82,7 +77,7 @@ export class SettingsProvider {
                 isRelative: configuration.get('conf.view.identsBefore.Tag') == 'relative',
             },
             {
-                prefix: '|',
+                keywords: ['|'],
                 prefixIndents: StringUtil.createLine(
                     this.readNumberSetting(configuration, 'conf.view.identsBefore.Table', 18), indentChar),
                 isRelative: false,
@@ -115,5 +110,9 @@ export class SettingsProvider {
             startingSymbolToIndentsNumberMapping,
             validateTags: validateTags.length === 0 ? undefined : validateTags
         };
+    }
+
+    private readNumberSetting(configuration: vscode.WorkspaceConfiguration, settingName: string, defualtValue: number): number {
+        return configuration.get<number>(settingName) ?? defualtValue;
     }
 }

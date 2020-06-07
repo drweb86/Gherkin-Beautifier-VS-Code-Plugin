@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import { Settings } from './models/settings';
 import { SettingsProvider } from './services/settings-provider';
 import { StringUtil } from './utils/string-util';
+import { FileHelper } from './helpers/file-helper';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -12,13 +13,14 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function willSaveTextDocument(e: vscode.TextDocumentWillSaveEvent) {
+
 	const textEditor = vscode.window.activeTextEditor;
 	if (!textEditor) {
 		return null;
 	}
 
 	const document = e.document;
-	if (!isFeatureFile(document)) {
+	if (!FileHelper.isFeatureFile(document)) {
 		return null;
 	}
 
@@ -28,7 +30,7 @@ function willSaveTextDocument(e: vscode.TextDocumentWillSaveEvent) {
 
 	// settings could have been changed, so we gotta reread them.
 	const settingsProvider = new SettingsProvider();
-	const settings = settingsProvider.getSettings();
+	const settings = settingsProvider.settings;
 
 	textEditor.edit(editBuilder => {
 		fixAll(document, editBuilder, settings);
@@ -37,10 +39,6 @@ function willSaveTextDocument(e: vscode.TextDocumentWillSaveEvent) {
 			validateTags(document, settings.validateTags);
 		}
 	});
-}
-
-function isFeatureFile(document: vscode.TextDocument): boolean {
-	return document.uri.fsPath.endsWith('.feature');
 }
 
 function fixAll(document: vscode.TextDocument, editBuilder: vscode.TextEditorEdit, settings: Settings): void {
@@ -59,13 +57,13 @@ function fixAll(document: vscode.TextDocument, editBuilder: vscode.TextEditorEdi
 			const replacement = settings.startingSymbolToIndentsNumberMapping[i];
 
 			const trimmedLine = StringUtil.trimAny(line, ['\t', ' ']);
-			if (trimmedLine.startsWith(replacement.prefix)) {
+			if (replacement.keywords.some(keyword => trimmedLine.startsWith(keyword))) {
 				textToReplace[lineNumber] = trimmedLine;
 				break;
 			}
 		}
-	}
 
+	}
 	// Basic Updates
 	for (let lineNumber = 0; lineNumber < text.length; lineNumber++) {
 		textToReplace[lineNumber] = applyBasicFormatting(textToReplace[lineNumber], settings);
@@ -118,11 +116,11 @@ function applyRelativeFormatting(lines: string[], line: string, linePos: number,
 	for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {
 		const replacement = settings.startingSymbolToIndentsNumberMapping[i];
 		if (!replacement.isRelative ||
-			!updatedLine.startsWith(replacement.prefix)) {
+			!replacement.keywords.some(keyword => updatedLine.startsWith(keyword))) {
 			continue;
 		}
 
-		const relativeLine = findFirstDifferentLine(lines, linePos + 1, replacement.prefix);
+		const relativeLine = findFirstDifferentLine(lines, linePos + 1, replacement.keywords);
 		if (relativeLine == undefined) {
 			continue;
 		}
@@ -139,10 +137,10 @@ function getPrefix(line: string): string {
 	return line.substr(0, line.length - trimmedLine.length);
 }
 
-function findFirstDifferentLine(lines: string[], startIndex: number, prefix: string): string | undefined {
+function findFirstDifferentLine(lines: string[], startIndex: number, prefixes: string[]): string | undefined {
 	for (let j = startIndex; j < lines.length; j++) {
 		if (lines[j] != '' &&
-			!lines[j].startsWith(prefix)) {
+			!prefixes.some(keyword => lines[j].startsWith(keyword))) {
 			return lines[j];
 		}
 	}
@@ -155,7 +153,7 @@ function applyBasicFormatting(line: string, settings: Settings): string {
 		const replacement = settings.startingSymbolToIndentsNumberMapping[i];
 		if (replacement.prefixIndents == undefined ||
 			replacement.isRelative ||
-			!updatedLine.startsWith(replacement.prefix)) {
+			!replacement.keywords.some(keyword => updatedLine.startsWith(keyword))) {
 			continue;
 		}
 

@@ -1,7 +1,7 @@
 {
   "name": "gherkin-beautifier-vs-code-plugin",
   "displayName": "Gherkin Beautifier",
-  "description": "Gherkin Beautifier is a VS Code Plugin for indentation of Gherkin/Cucumber .feature files",
+  "description": "Gherkin Beautifier is a multilingual VS Code Plugin for indentation of Gherkin/Cucumber .feature files",
   "version": "4.0.1",
   "publisher": "siarheikuchuk",
   "repository": {
@@ -72,11 +72,6 @@
             "default": "8",
             "description": "How many identation symbols to insert before 'Scenario Outline'"
           },
-          "conf.view.identsBefore.ScenarioTemplate": {
-            "type": "number",
-            "default": "8",
-            "description": "How many identation symbols to insert before 'Scenario Template'"
-          },
           "conf.view.identsBefore.Given": {
             "type": "number",
             "default": "12",
@@ -128,9 +123,9 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
+    "compile": "tsc -p ./ --resolveJsonModule",
     "lint": "eslint . --ext .ts,.tsx",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./ --resolveJsonModule"
   },
   "devDependencies": {
     "@types/node": "^12.12.44",
