@@ -2,7 +2,7 @@
   "name": "gherkin-beautifier-vs-code-plugin",
   "displayName": "Gherkin Beautifier",
   "description": "Gherkin Beautifier is a multilingual VS Code Plugin for indentation of Gherkin/Cucumber .feature files",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "publisher": "siarheikuchuk",
   "repository": {
     "type": "git",
@@ -116,6 +116,11 @@
             "type": "string",
             "default": "",
             "description": "Validates if all tags are from allowed tags list and show warning messages upon saving feature files. List of tags is specified by file. In a file tags should go one per line. Path to file is resolved relative to workspace folder"
+          },
+          "gherkin-beautifier.validate.complainIfThenTextDontHaveThisWord": {
+            "type": "string",
+            "default": "",
+            "description": "Validates if phrase in 'then' part of script contains the specified keyword (for example 'should', like Then Apple should be eaten). If word is missing, a warning will be shown, but script will be saved"
           }
         }
       }
