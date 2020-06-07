@@ -84,6 +84,17 @@ export class SettingsProvider {
             },
         ];
 
+        return {
+            indentChar,
+            startingSymbolToIndentsNumberMapping,
+            validations: {
+                tags: this.getValidateTags(configuration),
+                complainIfThenTextDontHaveThisWord: this.getComplainIfThenTextDontHaveThisWordSetting(configuration),
+            },
+        };
+    }
+
+    private getValidateTags(configuration: vscode.WorkspaceConfiguration): string[] | undefined {
         const validateTags = StringUtil.splitToTokens(configuration.get<string>('conf.view.validate.tags') ?? '');
         let validateTagsFile = StringUtil.trimAny(configuration.get<string>('conf.view.validate.tagsFile') ?? '', [' ']);
         if (validateTagsFile !== '') {
@@ -105,11 +116,15 @@ export class SettingsProvider {
             });
         }
 
-        return {
-            indentChar,
-            startingSymbolToIndentsNumberMapping,
-            validateTags: validateTags.length === 0 ? undefined : validateTags
-        };
+        return validateTags.length === 0 ? undefined : validateTags;
+    }
+
+    private getComplainIfThenTextDontHaveThisWordSetting(configuration: vscode.WorkspaceConfiguration): string | undefined {
+        let complainIfThenTextDontHaveThisWord: string | undefined = StringUtil.trimAny(configuration.get<string>('gherkin-beautifier.validate.complainIfThenTextDontHaveThisWord') ?? '', ['\t', ' ']);
+        if (!complainIfThenTextDontHaveThisWord) {
+            complainIfThenTextDontHaveThisWord = undefined;
+        }
+        return complainIfThenTextDontHaveThisWord;
     }
 
     private readNumberSetting(configuration: vscode.WorkspaceConfiguration, settingName: string, defualtValue: number): number {

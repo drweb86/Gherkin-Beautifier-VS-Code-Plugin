@@ -5,6 +5,7 @@ import { Settings } from './models/settings';
 import { SettingsProvider } from './services/settings-provider';
 import { StringUtil } from './utils/string-util';
 import { FileHelper } from './helpers/file-helper';
+import { ValidationService } from './services/validation-service';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -31,13 +32,12 @@ function willSaveTextDocument(e: vscode.TextDocumentWillSaveEvent) {
 	// settings could have been changed, so we gotta reread them.
 	const settingsProvider = new SettingsProvider();
 	const settings = settingsProvider.settings;
+	const validationService = new ValidationService();
 
 	textEditor.edit(editBuilder => {
 		fixAll(document, editBuilder, settings);
 
-		if (settings.validateTags) {
-			validateTags(document, settings.validateTags);
-		}
+		validationService.validate(document, settings);
 	});
 }
 
@@ -87,30 +87,6 @@ function fixAll(document: vscode.TextDocument, editBuilder: vscode.TextEditorEdi
 	}
 }
 
-function validateTags(document: vscode.TextDocument, allowedTags: string[]): void {
-	const allTagsInFile = [];
-
-	for (let lineNumber = 0, lineCount = document.lineCount; lineNumber < lineCount; lineNumber++) {
-		let line = document.lineAt(lineNumber).text;
-		line = StringUtil.trimAny(line, ['\t', ' ']);
-		if (line.startsWith('@')) {
-			allTagsInFile.push(...StringUtil.splitToTokens(line));
-		}
-	}
-
-	const notAllowedTags = allTagsInFile.filter(z => allowedTags.indexOf(z) === -1);
-	if (notAllowedTags.length === 0) {
-		return;
-	}
-	const complaint = `${notAllowedTags.join(', ')} tag(s) are not allowed. Allowed tags are ${allowedTags.join(', ')} (adjust setting conf.view.validate.tags / conf.view.validate.tagsFile).`;
-	vscode.window.showErrorMessage(complaint);
-}
-
-/**
- * @param {string[]} lines
- * @param {string} line
- * @param {Settings} settings
- */
 function applyRelativeFormatting(lines: string[], line: string, linePos: number, settings: Settings): string {
 	const updatedLine = line;
 	for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {

@@ -31,16 +31,19 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 
 #### Validation
 
-| Setting                     | Description                                                                                                                                                                                                                            | Default value  |
-| ----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| --------------:|
-| conf.view.validate.tags     | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. How to specify tags? Example 1: @debug @important-component. Example 2: @debug, @important-component                             |                |
-| conf.view.validate.tagsFile | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. List of tags is specified by file. In a file tags should go one per line. Path to file is resolved relative to workspace folder  |                |
+| Setting                                                         | Description                                                                                                                                                                                                                            | Default value  |
+| ----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| --------------:|
+| conf.view.validate.tags                                         | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. How to specify tags? Example 1: @debug @important-component. Example 2: @debug, @important-component                             |                |
+| conf.view.validate.tagsFile                                     | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. List of tags is specified by file. In a file tags should go one per line. Path to file is resolved relative to workspace folder  |                |
+| gherkin-beautifier.validate.complainIfThenTextDontHaveThisWord  | Validates if phrase in 'then' part of script contains the specified keyword (for example 'should', like Then Apple should be eaten). If word is missing, a warning will be shown, but script will be saved                             |                |
 
 ## Change log
+
 * 5.0.0 (2020-06-07):
 Migrate to TypeScript
 Add support for languages. Languages were taken from Cucumber project under MIT License https://raw.githubusercontent.com/cucumber/cucumber/master/gherkin/gherkin-languages.json
 conf.view.identsBefore.ScenarioTemplate was removed (it is a variant of English translation for conf.view.identsBefore.ScenarioOutline).
+Setting 'gherkin-beautifier.validate.complainIfThenTextDontHaveThisWord' was added. It validates if phrase in 'then' part of script contains the specified keyword (for example 'should', like Then Apple should be eaten). If word is missing, a warning will be shown, but script will be saved. By default it is disabled.
 * 4.0.0 (2020-05-17):
 conf.view.identsBefore.At renamed to conf.view.identsBefore.Tags. Default value has changed to 'relative'.
 * 3.0.0 (2020-02-10): 
