@@ -39,6 +39,9 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 
 ## Change log
 
+* 6.0.0 (2020-07-21)
+Fix: Scnenario setting was outruling the Scenario Outline setting for English.
+
 * 5.0.0 (2020-06-07):
 Migrate to TypeScript
 Add support for languages. Languages were taken from Cucumber project under MIT License https://raw.githubusercontent.com/cucumber/cucumber/master/gherkin/gherkin-languages.json
