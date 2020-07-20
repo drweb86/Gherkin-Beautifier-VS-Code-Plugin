@@ -24,11 +24,6 @@ export class SettingsProvider {
                 isRelative: false,
             },
             {
-                keywords: languageService.getTranslations('scenario'),
-                prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Scenario', 8), indentChar),
-                isRelative: false,
-            },
-            {
                 keywords: languageService.getTranslations('examples'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Examples', 8), indentChar),
                 isRelative: false,
@@ -41,6 +36,11 @@ export class SettingsProvider {
             {
                 keywords: languageService.getTranslations('scenarioOutline'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.ScenarioOutline', 8), indentChar),
+                isRelative: false,
+            },
+            {
+                keywords: languageService.getTranslations('scenario'),
+                prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Scenario', 8), indentChar),
                 isRelative: false,
             },
             {
