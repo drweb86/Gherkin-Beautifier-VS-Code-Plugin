@@ -5,7 +5,7 @@ export class LanguageService {
     public getTranslations(keyword: LanguageTerm): string[] {
         const allTranslations: string[] = [];
 
-        Object.entries(languages).forEach(([langKey, language]) => {
+        Object.entries(languages).forEach(([, language]) => {
             const translations: string[] = language[keyword];
             allTranslations.push(...translations);
         });

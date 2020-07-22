@@ -12,6 +12,8 @@ export class SettingsProvider {
 
         const configuration = vscode.workspace.getConfiguration();
         const indentChar = configuration.get('conf.view.indentSymbol') === 'tab' ? '\t' : ' ';
+        const tableAutoformat = this.readBooleanSetting(configuration, 'conf.view.table.autoformat', true);
+
         const startingSymbolToIndentsNumberMapping: KeywordIndent[] = [
             {
                 keywords: languageService.getTranslations('feature'),
@@ -87,6 +89,7 @@ export class SettingsProvider {
         return {
             indentChar,
             startingSymbolToIndentsNumberMapping,
+            tableAutoformat,
             validations: {
                 tags: this.getValidateTags(configuration),
                 complainIfThenTextDontHaveThisWord: this.getComplainIfThenTextDontHaveThisWordSetting(configuration),
@@ -129,5 +132,9 @@ export class SettingsProvider {
 
     private readNumberSetting(configuration: vscode.WorkspaceConfiguration, settingName: string, defualtValue: number): number {
         return configuration.get<number>(settingName) ?? defualtValue;
+    }
+
+    private readBooleanSetting(configuration: vscode.WorkspaceConfiguration, settingName: string, defualtValue: boolean): boolean {
+        return configuration.get<boolean>(settingName) ?? defualtValue;
     }
 }

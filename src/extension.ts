@@ -6,6 +6,7 @@ import { SettingsProvider } from './services/settings-provider';
 import { StringUtil } from './utils/string-util';
 import { FileHelper } from './helpers/file-helper';
 import { ValidationService } from './services/validation-service';
+import { TablesFormatter } from './services/tables-formatter';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -64,6 +65,7 @@ function fixAll(document: vscode.TextDocument, editBuilder: vscode.TextEditorEdi
 		}
 
 	}
+
 	// Basic Updates
 	for (let lineNumber = 0; lineNumber < text.length; lineNumber++) {
 		textToReplace[lineNumber] = applyBasicFormatting(textToReplace[lineNumber], settings);
@@ -72,6 +74,12 @@ function fixAll(document: vscode.TextDocument, editBuilder: vscode.TextEditorEdi
 	// Relative Updates
 	for (let lineNumber = 0; lineNumber < text.length; lineNumber++) {
 		textToReplace[lineNumber] = applyRelativeFormatting(textToReplace, textToReplace[lineNumber], lineNumber, settings);
+	}
+
+	// Table Updates
+	if (settings.tableAutoformat) {
+		const tableFormatter = new TablesFormatter();
+		tableFormatter.format(textToReplace);
 	}
 
 	// update
