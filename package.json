@@ -107,6 +107,11 @@
             "default": "18",
             "description": "How many identation symbols to insert before table '|'"
           },
+          "conf.view.table.autoformat": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enables table autoformatting"
+          },
           "conf.view.validate.tags": {
             "type": "string",
             "default": "",
