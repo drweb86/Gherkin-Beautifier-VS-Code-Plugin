@@ -11,7 +11,7 @@
   "bugs": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/issues/",
   "homepage": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/blob/master/README.md",
   "engines": {
-    "vscode": "^1.34.0"
+    "vscode": "^1.47.0"
   },
   "icon": "icon.png",
   "galleryBanner.color": "#0D5CAB",

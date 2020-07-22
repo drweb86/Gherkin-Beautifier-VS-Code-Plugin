@@ -58,6 +58,25 @@ Full Gherkin language (en) support.
 Tags validation
 * 1.0.0 (2020-02-02): Initial release
 
+## Development
+
+Running extension
+Press F5
+
+Publishing
+npm i -g vsce@latest
+vsce package
+vsce publish
+
+PAT generation
+1. https://dev.azure.com/SiarheiKuchuk/_usersSettings/tokens
+2. Click New Token
+3. Name should be 'gherkin-beautifier-vs-code-plugin'
+4. Organization should be 'All accessible organizations'
+4. Click Scopes \ Show all scopes \ Marketplace select Acquire+Publish, 
+5. Click Create...
+6. vsce login 'siarheikuchuk'
+
 ## Contributions
 Love this extension? [Star](https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/stargazers) us!
 
