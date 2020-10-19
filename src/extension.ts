@@ -7,11 +7,16 @@ import { StringUtil } from './utils/string-util';
 import { FileHelper } from './helpers/file-helper';
 import { ValidationService } from './services/validation-service';
 import { TablesFormatter } from './services/tables-formatter';
+import { ScenariousExplorerProvider } from './views/scenarious-explorer';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.workspace.onWillSaveTextDocument(willSaveTextDocument));
+	vscode.window.registerTreeDataProvider(
+		'gherkin-beautifider-vs-code-plugin-view',
+		new ScenariousExplorerProvider(vscode.workspace.workspaceFolders)
+	);
 }
 
 function willSaveTextDocument(e: vscode.TextDocumentWillSaveEvent) {

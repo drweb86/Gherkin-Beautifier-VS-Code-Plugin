@@ -3,6 +3,8 @@ The multilingual plugin for Visual Studio Code that beautifies the Gherkin / Cuc
 
 ![Demostration of using this extension](https://raw.githubusercontent.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/master/demo.gif)
 
+Shows explorer tree of scenarios files.
+
 ## Usage
 Plugin will be invoked upon saving the .feature file.
 
@@ -40,6 +42,8 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 
 ## Change log
 
+* 7.0.0 (2020-10-19)
+Add Tree View of feature / rules / scenarios.
 * 6.0.0 (2020-07-23)
 Fix: Scnenario setting was outruling the Scenario Outline setting for English.
 Table autoformatting was added, it is enabled by default (you can disable it with setting conf.view.table.autoformat).

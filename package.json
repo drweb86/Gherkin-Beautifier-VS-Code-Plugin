@@ -29,6 +29,14 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "gherkin-beautifider-vs-code-plugin-view",
+          "name": "Scenarious Explorer"
+        }
+      ]
+    },
     "configuration": [
       {
         "title": "Gherkin Beautifier",
