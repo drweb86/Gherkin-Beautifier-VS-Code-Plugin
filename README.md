@@ -38,10 +38,15 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 | conf.view.validate.tagsFile                                     | Validates if all tags are from allowed tags list and show warning messages upon saving feature files. List of tags is specified by file. In a file tags should go one per line. Path to file is resolved relative to workspace folder  |                |
 | gherkin-beautifier.validate.complainIfThenTextDontHaveThisWord  | Validates if phrase in 'then' part of script contains the specified keyword (for example 'should', like Then Apple should be eaten). If word is missing, a warning will be shown, but script will be saved                             |                |
 
+## Non-Discrimination Statement
+
+Gherkin Beautifier VS Code Plugin is not affilated with cucumber-js project and stands against any form of discrimination by race including but not limited to Belorussians and Russians.
+
 ## Change log
 
 * 7.0.0 (2022-04-06)
 Update: Min VS Code version that is required by addin is 1.66 (2022-03-01)
+Added: Non-Discrimination Statement
 * 6.0.0 (2020-07-23)
 Fix: Scnenario setting was outruling the Scenario Outline setting for English.
 Table autoformatting was added, it is enabled by default (you can disable it with setting conf.view.table.autoformat).
