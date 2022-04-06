@@ -40,6 +40,8 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 
 ## Change log
 
+* 7.0.0 (2022-04-06)
+Update: Min VS Code version that is required by addin is 1.66 (2022-03-01)
 * 6.0.0 (2020-07-23)
 Fix: Scnenario setting was outruling the Scenario Outline setting for English.
 Table autoformatting was added, it is enabled by default (you can disable it with setting conf.view.table.autoformat).

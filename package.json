@@ -2,7 +2,7 @@
   "name": "gherkin-beautifier-vs-code-plugin",
   "displayName": "Gherkin Beautifier",
   "description": "Gherkin Beautifier is a multilingual VS Code Plugin for indentation of Gherkin/Cucumber .feature files",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "publisher": "siarheikuchuk",
   "repository": {
     "type": "git",
