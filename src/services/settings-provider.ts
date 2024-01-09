@@ -66,6 +66,11 @@ export class SettingsProvider {
                 isRelative: false,
             },
             {
+                keywords: ['*'],
+                prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Asterisk', 16), indentChar),
+                isRelative: false,
+            },
+            {
                 keywords: languageService.getTranslations('but'),
                 prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.But', 14), indentChar),
                 isRelative: false,

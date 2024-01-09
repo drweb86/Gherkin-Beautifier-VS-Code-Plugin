@@ -40,72 +40,77 @@
               "tab"
             ],
             "default": "space",
-            "description": "What identation symbol to use"
+            "description": "What indentation symbol to use"
           },
           "conf.view.identsBefore.Feature": {
             "type": "number",
             "default": "0",
-            "description": "How many identation symbols to insert before 'Feature'"
+            "description": "How many indentation symbols to insert before 'Feature'"
           },
           "conf.view.identsBefore.Rule": {
             "type": "number",
             "default": "4",
-            "description": "How many identation symbols to insert before 'Rule'"
+            "description": "How many indentation symbols to insert before 'Rule'"
           },
           "conf.view.identsBefore.Scenario": {
             "type": "number",
             "default": "8",
-            "description": "How many identation symbols to insert before 'Scneario'"
+            "description": "How many indentation symbols to insert before 'Scneario'"
           },
           "conf.view.identsBefore.Examples": {
             "type": "number",
             "default": "8",
-            "description": "How many identation symbols to insert before 'Examples'"
+            "description": "How many indentation symbols to insert before 'Examples'"
           },
           "conf.view.identsBefore.Background": {
             "type": "number",
             "default": "8",
-            "description": "How many identation symbols to insert before 'Background'"
+            "description": "How many indentation symbols to insert before 'Background'"
           },
           "conf.view.identsBefore.ScenarioOutline": {
             "type": "number",
             "default": "8",
-            "description": "How many identation symbols to insert before 'Scenario Outline'"
+            "description": "How many indentation symbols to insert before 'Scenario Outline'"
           },
           "conf.view.identsBefore.Given": {
             "type": "number",
             "default": "12",
-            "description": "How many identation symbols to insert before 'Given'"
+            "description": "How many indentation symbols to insert before 'Given'"
           },
           "conf.view.identsBefore.When": {
             "type": "number",
             "default": "13",
-            "description": "How many identation symbols to insert before 'When'"
+            "description": "How many indentation symbols to insert before 'When'"
           },
           "conf.view.identsBefore.Then": {
             "type": "number",
             "default": "13",
-            "description": "How many identation symbols to insert before 'Then'"
+            "description": "How many indentation symbols to insert before 'Then'"
           },
           "conf.view.identsBefore.And": {
             "type": "number",
             "default": "14",
-            "description": "How many identation symbols to insert before 'And'"
+            "description": "How many indentation symbols to insert before 'And'"
+          },
+          "conf.view.identsBefore.Asterisk": {
+            "type": "number",
+            "default": "16",
+            "description": "How many indentation symbols to insert before '*'"
           },
           "conf.view.identsBefore.But": {
             "type": "number",
             "default": "14",
-            "description": "How many identation symbols to insert before 'But'"
+            "description": "How many indentation symbols to insert before 'But'"
           },
           "conf.view.identsBefore.Tag": {
             "type": "string",
             "default": "relative",
-            "description": "How many identation symbols to insert before @ tags. Allowed values: amount of indentation chars or 'relative'"
+            "description": "How many indentation symbols to insert before @ tags. Allowed values: amount of indentation chars or 'relative'"
           },
           "conf.view.identsBefore.Table": {
             "type": "number",
             "default": "18",
-            "description": "How many identation symbols to insert before table '|'"
+            "description": "How many indentation symbols to insert before table '|'"
           },
           "conf.view.table.autoformat": {
             "type": "boolean",

@@ -12,23 +12,24 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 
 #### Indentation
 
-| Setting                                  | Description                                                                                                     | Default value  |
-| ---------------------------------------- |:---------------------------------------------------------------------------------------------------------------:| --------------:|
-| conf.view.indentSymbol                   | What identation symbol to use (tab or space)                                                                    |          space |
-| conf.view.identsBefore.Feature           | How many identation symbols to insert before 'Feature'                                                          |              0 |
-| conf.view.identsBefore.Rule              | How many identation symbols to insert before 'Rule'                                                             |              4 |
-| conf.view.identsBefore.Scenario          | How many identation symbols to insert before 'Scenario'                                                         |              8 |
-| conf.view.identsBefore.Examples          | How many identation symbols to insert before 'Examples'                                                         |              8 |
-| conf.view.identsBefore.Background        | How many identation symbols to insert before 'Background'                                                       |              8 |
-| conf.view.identsBefore.ScenarioOutline   | How many identation symbols to insert before 'Scenario Outline'                                                 |              8 |
-| conf.view.identsBefore.Given             | How many identation symbols to insert before 'Given'                                                            |             12 |
-| conf.view.identsBefore.When              | How many identation symbols to insert before 'When'                                                             |             13 |
-| conf.view.identsBefore.Then              | How many identation symbols to insert before 'Then'                                                             |             13 |
-| conf.view.identsBefore.And               | How many identation symbols to insert before 'And'                                                              |             14 |
-| conf.view.identsBefore.But               | How many identation symbols to insert before 'But'                                                              |             14 |
-| conf.view.identsBefore.Tag               | How many identation symbols to insert before @ tags. Allowed values: amount of indentation chars or 'relative'  |       relative |
-| conf.view.identsBefore.Table             | How many identation symbols to insert before 'Table'                                                            |             18 |
-| conf.view.table.autoformat               | Enables table autoformatting                                                                                    |           true |
+| Setting                                  | Description                                                                                                      | Default value  |
+| ---------------------------------------- |:----------------------------------------------------------------------------------------------------------------:| --------------:|
+| conf.view.indentSymbol                   | What indentation symbol to use (tab or space)                                                                    |          space |
+| conf.view.identsBefore.Feature           | How many indentation symbols to insert before 'Feature'                                                          |              0 |
+| conf.view.identsBefore.Rule              | How many indentation symbols to insert before 'Rule'                                                             |              4 |
+| conf.view.identsBefore.Scenario          | How many indentation symbols to insert before 'Scenario'                                                         |              8 |
+| conf.view.identsBefore.Examples          | How many indentation symbols to insert before 'Examples'                                                         |              8 |
+| conf.view.identsBefore.Background        | How many indentation symbols to insert before 'Background'                                                       |              8 |
+| conf.view.identsBefore.ScenarioOutline   | How many indentation symbols to insert before 'Scenario Outline'                                                 |              8 |
+| conf.view.identsBefore.Given             | How many indentation symbols to insert before 'Given'                                                            |             12 |
+| conf.view.identsBefore.When              | How many indentation symbols to insert before 'When'                                                             |             13 |
+| conf.view.identsBefore.Then              | How many indentation symbols to insert before 'Then'                                                             |             13 |
+| conf.view.identsBefore.And               | How many indentation symbols to insert before 'And'                                                              |             14 |
+| conf.view.indentsBefore.Asterisk         | How many indentation symbols to insert before '*'                                                                |             16 |
+| conf.view.identsBefore.But               | How many indentation symbols to insert before 'But'                                                              |             14 |
+| conf.view.identsBefore.Tag               | How many indentation symbols to insert before @ tags. Allowed values: amount of indentation chars or 'relative'  |       relative |
+| conf.view.identsBefore.Table             | How many indentation symbols to insert before 'Table'                                                            |             18 |
+| conf.view.table.autoformat               | Enables table autoformatting                                                                                     |           true |
 
 #### Validation
 
@@ -47,6 +48,7 @@ Gherkin Beautifier VS Code Plugin is not affilated with cucumber-js project and 
 * 2024.1.6
 Update: Min VS Code version that is required by add-in is 1.85.1
 Update: packages to latest versions
+Add support for asterisk (*)
 * 7.0.0 (2022-04-06)
 Update: Min VS Code version that is required by addin is 1.66 (2022-03-01)
 Added: Non-Discrimination Statement
