@@ -95,6 +95,7 @@ export class SettingsProvider {
             indentChar,
             startingSymbolToIndentsNumberMapping,
             tableAutoformat,
+            docString: this.readNumberSetting(configuration, 'conf.view.indentsBefore.DocString', 18),
             validations: {
                 tags: this.getValidateTags(configuration),
                 complainIfThenTextDontHaveThisWord: this.getComplainIfThenTextDontHaveThisWordSetting(configuration),

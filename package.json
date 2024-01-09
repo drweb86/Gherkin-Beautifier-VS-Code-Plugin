@@ -97,6 +97,11 @@
             "default": "16",
             "description": "How many indentation symbols to insert before '*'"
           },
+          "conf.view.indentsBefore.DocString": {
+            "type": "number",
+            "default": "18",
+            "description": "How many indentation symbols to insert before doc string \"\"\""
+          },
           "conf.view.identsBefore.But": {
             "type": "number",
             "default": "14",
@@ -139,7 +144,7 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./ --resolveJsonModule",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint . --ext .ts",
     "watch": "tsc -watch -p ./ --resolveJsonModule"
   },
   "devDependencies": {

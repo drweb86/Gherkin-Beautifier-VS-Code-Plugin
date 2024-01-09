@@ -26,6 +26,7 @@ You can put settings in the .workspace or .vscode file of your projects, so all 
 | conf.view.identsBefore.Then              | How many indentation symbols to insert before 'Then'                                                             |             13 |
 | conf.view.identsBefore.And               | How many indentation symbols to insert before 'And'                                                              |             14 |
 | conf.view.indentsBefore.Asterisk         | How many indentation symbols to insert before '*'                                                                |             16 |
+| conf.view.indentsBefore.DocString        | How many indentation symbols to insert before doc string """                                                     |             18 |
 | conf.view.identsBefore.But               | How many indentation symbols to insert before 'But'                                                              |             14 |
 | conf.view.identsBefore.Tag               | How many indentation symbols to insert before @ tags. Allowed values: amount of indentation chars or 'relative'  |       relative |
 | conf.view.identsBefore.Table             | How many indentation symbols to insert before 'Table'                                                            |             18 |
