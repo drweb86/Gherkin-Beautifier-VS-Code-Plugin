@@ -17,9 +17,22 @@ const sourceText = [
     "\"\"\"",
     "test",
     "\"\"\"",
+    "\"\"\"",
+    " where",
+    "\"\"\"",
+    "  \"\"\"",
+    "where",
+    "  \"\"\"",
+    "     \"\"\"",
+    " where",
+    "     \"\"\"",
+    "     \"\"\"",
+    "        where",
+    "     \"\"\"",
 ];
+
 const updatedText = FormatterService.getUpdatedText(settings, sourceText);
-sourceText.forEach((x, i)  => console.info(`${sourceText[i].padEnd(10)} => ${updatedText[i].padEnd(10)}`));
+sourceText.forEach((x, i)  => console.info(`"${sourceText[i].padEnd(15)}"=>"${updatedText[i].padEnd(15)}"`));
 
 // Executing the tests:
 // nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' ./src/services/formatter-service.tests.ts

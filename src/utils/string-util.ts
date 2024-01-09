@@ -41,6 +41,17 @@ export class StringUtil {
         return (start > 0 || end < str.length) ? str.substring(start, end) : str;
     }
 
+    static trimStart(str: string, chars: string[], max: number): string {
+        let start = 0;
+        let end = str.length;
+
+        while (start < end && start < max && chars.indexOf(str[start]) >= 0) {
+            ++start;
+        }
+
+        return (start > 0 || end < str.length) ? str.substring(start, end) : str;
+    }
+
     static trimOnce(str: string, chars: string[]): string {
         let start = 0;
         let end = str.length;

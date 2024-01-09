@@ -4,35 +4,55 @@ import { TablesFormatter } from "./tables-formatter";
 
 export class FormatterService {
     public static getUpdatedText(settings: Settings, lines: string[]): string[] {
-        const textToReplace = [];
+        const textToReplace: string[] = [];
+        const docStringMarker = '"""';
+        const trimmedChars = ['\t', ' '];
 
         // populate
+        let isInsideDocString = false;
+        let docStringPositionDiff = 0;
         for (let lineNumber = 0, lineCount = lines.length; lineNumber < lineCount; lineNumber++) {
             const line = lines[lineNumber];
 
             textToReplace.push(line);
+            const trimmedLine = StringUtil.trimAny(line, trimmedChars);
 
-            // trimming spaces for known prefixes.
-            for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {
-                const replacement = settings.startingSymbolToIndentsNumberMapping[i];
-
-                const trimmedLine = StringUtil.trimAny(line, ['\t', ' ']);
-                if (replacement.keywords.some(keyword => trimmedLine.startsWith(keyword))) {
-                    textToReplace[lineNumber] = trimmedLine;
-                    break;
+            let isDocStringMarkerLine = trimmedLine.startsWith(docStringMarker);
+            if (isDocStringMarkerLine) {
+                isInsideDocString = !isInsideDocString;
+                if (isInsideDocString) {
+                    docStringPositionDiff = settings.docString - (line.length - trimmedLine.length);
                 }
             }
 
-        }
+            if (isDocStringMarkerLine) {
+                textToReplace[lineNumber] = StringUtil.createLine(settings.docString, settings.indentChar) + trimmedLine;
+            } else if (isInsideDocString) {
+                    if (docStringPositionDiff < 0) {
+                        textToReplace[lineNumber] = StringUtil.trimStart(textToReplace[lineNumber], trimmedChars, -docStringPositionDiff);
+                    } else if (docStringPositionDiff > 0) {
+                        textToReplace[lineNumber] = StringUtil.createLine(docStringPositionDiff, settings.indentChar) + textToReplace[lineNumber];
+                    }
 
-        // Basic Updates
-        for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
-            textToReplace[lineNumber] = FormatterService.applyBasicFormatting(textToReplace[lineNumber], settings);
-        }
+                    if (textToReplace[lineNumber].indexOf(trimmedLine) < settings.docString) {
+                        textToReplace[lineNumber] = StringUtil.createLine(settings.docString, settings.indentChar) + trimmedLine;
+                    }
+            } else {
 
-        // Relative Updates
-        for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
-            textToReplace[lineNumber] = FormatterService.applyRelativeFormatting(textToReplace, textToReplace[lineNumber], lineNumber, settings);
+                // trimming spaces for known prefixes.
+                for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {
+                    const replacement = settings.startingSymbolToIndentsNumberMapping[i];
+                    
+                    if (replacement.keywords.some(keyword => trimmedLine.startsWith(keyword))) {
+                        textToReplace[lineNumber] = trimmedLine;
+                        break;
+                    }
+                }
+
+
+                textToReplace[lineNumber] = FormatterService.applyBasicFormatting(textToReplace[lineNumber], settings);
+                textToReplace[lineNumber] = FormatterService.applyRelativeFormatting(textToReplace, textToReplace[lineNumber], lineNumber, settings);
+            }
         }
 
         // Table Updates
