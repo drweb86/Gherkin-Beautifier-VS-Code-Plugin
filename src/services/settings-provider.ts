@@ -67,7 +67,7 @@ export class SettingsProvider {
             },
             {
                 keywords: ['*'],
-                prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.identsBefore.Asterisk', 16), indentChar),
+                prefixIndents: StringUtil.createLine(this.readNumberSetting(configuration, 'conf.view.indentsBefore.Asterisk', 16), indentChar),
                 isRelative: false,
             },
             {

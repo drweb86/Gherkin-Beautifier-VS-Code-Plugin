@@ -92,7 +92,7 @@
             "default": "14",
             "description": "How many indentation symbols to insert before 'And'"
           },
-          "conf.view.identsBefore.Asterisk": {
+          "conf.view.indentsBefore.Asterisk": {
             "type": "number",
             "default": "16",
             "description": "How many indentation symbols to insert before '*'"
