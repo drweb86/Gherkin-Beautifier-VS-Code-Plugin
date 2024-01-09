@@ -1,7 +1,7 @@
 # Gherkin Beautifier VS Code Plugin
 The multilingual plugin for Visual Studio Code that beautifies the Gherkin / Cucumber .feature files on saving them. Located at https://marketplace.visualstudio.com/items?itemName=siarheikuchuk.gherkin-beautifier-vs-code-plugin.
 
-![Demostration of using this extension](https://raw.githubusercontent.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/master/demo.gif)
+![Demonstration of using this extension](https://raw.githubusercontent.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/master/demo.gif)
 
 ## Usage
 Plugin will be invoked upon saving the .feature file.
@@ -44,6 +44,9 @@ Gherkin Beautifier VS Code Plugin is not affilated with cucumber-js project and 
 
 ## Change log
 
+* 2024.1.6
+Update: Min VS Code version that is required by add-in is 1.85.1
+Update: packages to latest versions
 * 7.0.0 (2022-04-06)
 Update: Min VS Code version that is required by addin is 1.66 (2022-03-01)
 Added: Non-Discrimination Statement

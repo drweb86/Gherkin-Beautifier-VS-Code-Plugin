@@ -2,7 +2,7 @@
   "name": "gherkin-beautifier-vs-code-plugin",
   "displayName": "Gherkin Beautifier",
   "description": "Gherkin Beautifier is a multilingual VS Code Plugin for indentation of Gherkin/Cucumber .feature files",
-  "version": "7.0.0",
+  "version": "2024.1.6",
   "publisher": "siarheikuchuk",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   "bugs": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/issues/",
   "homepage": "https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/blob/master/README.md",
   "engines": {
-    "vscode": "^1.66.0"
+    "vscode": "^1.85.1"
   },
   "icon": "icon.png",
   "galleryBanner.color": "#0D5CAB",
@@ -138,11 +138,11 @@
     "watch": "tsc -watch -p ./ --resolveJsonModule"
   },
   "devDependencies": {
-    "@types/node": "^17.0.23",
-    "@types/vscode": "^1.66.0",
-    "@typescript-eslint/eslint-plugin": "^5.18.0",
-    "@typescript-eslint/parser": "^5.18.0",
-    "eslint": "^8.12.0",
-    "typescript": "^4.6.3"
+    "@types/node": "^20.10.8",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
   }
 }
