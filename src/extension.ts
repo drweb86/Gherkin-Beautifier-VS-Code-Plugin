@@ -7,6 +7,7 @@ import { StringUtil } from './utils/string-util';
 import { FileHelper } from './helpers/file-helper';
 import { ValidationService } from './services/validation-service';
 import { TablesFormatter } from './services/tables-formatter';
+import { FormatterService } from './services/formatter-service';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -43,49 +44,18 @@ function willSaveTextDocument(e: vscode.TextDocumentWillSaveEvent) {
 }
 
 function fixAll(document: vscode.TextDocument, editBuilder: vscode.TextEditorEdit, settings: Settings): void {
-	const text = [];
-	const textToReplace = [];
+	const lines: string[] = [];
 
-	// populate
-	for (let lineNumber = 0, lineCount = document.lineCount; lineNumber < lineCount; lineNumber++) {
-		const line = document.lineAt(lineNumber).text;
-
-		text.push(line);
-		textToReplace.push(line);
-
-		// trimming spaces for known prefixes.
-		for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {
-			const replacement = settings.startingSymbolToIndentsNumberMapping[i];
-
-			const trimmedLine = StringUtil.trimAny(line, ['\t', ' ']);
-			if (replacement.keywords.some(keyword => trimmedLine.startsWith(keyword))) {
-				textToReplace[lineNumber] = trimmedLine;
-				break;
-			}
-		}
-
+	for (let i = 0; i < document.lineCount; i++) {
+		lines.push(document.lineAt(i).text);
 	}
 
-	// Basic Updates
-	for (let lineNumber = 0; lineNumber < text.length; lineNumber++) {
-		textToReplace[lineNumber] = applyBasicFormatting(textToReplace[lineNumber], settings);
-	}
-
-	// Relative Updates
-	for (let lineNumber = 0; lineNumber < text.length; lineNumber++) {
-		textToReplace[lineNumber] = applyRelativeFormatting(textToReplace, textToReplace[lineNumber], lineNumber, settings);
-	}
-
-	// Table Updates
-	if (settings.tableAutoformat) {
-		const tableFormatter = new TablesFormatter();
-		tableFormatter.format(textToReplace);
-	}
+	const updatedText = FormatterService.getUpdatedText(settings, lines);
 
 	// update
-	for (let lineNumber = 0; lineNumber < text.length; lineNumber++) {
-		const line = text[lineNumber];
-		const fixedLine = textToReplace[lineNumber];
+	for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
+		const line = lines[lineNumber];
+		const fixedLine = updatedText[lineNumber];
 		if (line != fixedLine) {
 			editBuilder.replace(
 				new vscode.Range(lineNumber, 0, lineNumber, line.length),
@@ -93,56 +63,4 @@ function fixAll(document: vscode.TextDocument, editBuilder: vscode.TextEditorEdi
 			);
 		}
 	}
-}
-
-function applyRelativeFormatting(lines: string[], line: string, linePos: number, settings: Settings): string {
-	const updatedLine = line;
-	for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {
-		const replacement = settings.startingSymbolToIndentsNumberMapping[i];
-		if (!replacement.isRelative ||
-			!replacement.keywords.some(keyword => updatedLine.startsWith(keyword))) {
-			continue;
-		}
-
-		const relativeLine = findFirstDifferentLine(lines, linePos + 1, replacement.keywords);
-		if (relativeLine == undefined) {
-			continue;
-		}
-
-		const prefix = getPrefix(relativeLine);
-		return prefix + line;
-	}
-
-	return line;
-}
-
-function getPrefix(line: string): string {
-	const trimmedLine = StringUtil.trimAny(line, ['\t', ' ']);
-	return line.substr(0, line.length - trimmedLine.length);
-}
-
-function findFirstDifferentLine(lines: string[], startIndex: number, prefixes: string[]): string | undefined {
-	for (let j = startIndex; j < lines.length; j++) {
-		if (lines[j] != '' &&
-			!prefixes.some(keyword => lines[j].startsWith(keyword))) {
-			return lines[j];
-		}
-	}
-	return undefined;
-}
-
-function applyBasicFormatting(line: string, settings: Settings): string {
-	const updatedLine = line;
-	for (let i = 0; i < settings.startingSymbolToIndentsNumberMapping.length; i++) {
-		const replacement = settings.startingSymbolToIndentsNumberMapping[i];
-		if (replacement.prefixIndents == undefined ||
-			replacement.isRelative ||
-			!replacement.keywords.some(keyword => updatedLine.startsWith(keyword))) {
-			continue;
-		}
-
-		return replacement.prefixIndents + updatedLine;
-	}
-
-	return line;
 }
