@@ -6,6 +6,7 @@ export class FormatterService {
     public static getUpdatedText(settings: Settings, lines: string[]): string[] {
         const textToReplace: string[] = [];
         const docStringMarker = '"""';
+        const docStringLines: number[] = [];
         const trimmedChars = ['\t', ' '];
 
         // populate
@@ -17,8 +18,9 @@ export class FormatterService {
             textToReplace.push(line);
             const trimmedLine = StringUtil.trimAny(line, trimmedChars);
 
-            let isDocStringMarkerLine = trimmedLine.startsWith(docStringMarker);
+            const isDocStringMarkerLine = trimmedLine.startsWith(docStringMarker);
             if (isDocStringMarkerLine) {
+                docStringLines.push(lineNumber);
                 isInsideDocString = !isInsideDocString;
                 if (isInsideDocString) {
                     docStringPositionDiff = settings.docString - (line.length - trimmedLine.length);
@@ -28,6 +30,7 @@ export class FormatterService {
             if (isDocStringMarkerLine) {
                 textToReplace[lineNumber] = StringUtil.createLine(settings.docString, settings.indentChar) + trimmedLine;
             } else if (isInsideDocString) {
+                docStringLines.push(lineNumber);
                     if (docStringPositionDiff < 0) {
                         textToReplace[lineNumber] = StringUtil.trimStart(textToReplace[lineNumber], trimmedChars, -docStringPositionDiff);
                     } else if (docStringPositionDiff > 0) {
@@ -48,11 +51,25 @@ export class FormatterService {
                         break;
                     }
                 }
-
-
-                textToReplace[lineNumber] = FormatterService.applyBasicFormatting(textToReplace[lineNumber], settings);
-                textToReplace[lineNumber] = FormatterService.applyRelativeFormatting(textToReplace, textToReplace[lineNumber], lineNumber, settings);
             }
+        }
+
+        // Basic Updates
+        for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
+            if (docStringLines.includes(lineNumber)) {
+                continue;
+            }
+
+            textToReplace[lineNumber] = FormatterService.applyBasicFormatting(textToReplace[lineNumber], settings);
+        }
+        
+        // Relative Updates
+        for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
+            if (docStringLines.includes(lineNumber)) {
+                continue;
+            }
+
+            textToReplace[lineNumber] = FormatterService.applyRelativeFormatting(textToReplace, textToReplace[lineNumber], lineNumber, settings);
         }
 
         // Table Updates
