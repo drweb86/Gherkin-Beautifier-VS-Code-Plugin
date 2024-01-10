@@ -46,6 +46,8 @@ Gherkin Beautifier VS Code Plugin is not affilated with cucumber-js project and 
 
 ## Change log
 
+* 2024.1.10
+Fix: relative tags format broken in 2024.1.6
 * 2024.1.6
 Update: Min VS Code version that is required by add-in is 1.85.1
 Update: packages to latest versions
