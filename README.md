@@ -46,6 +46,8 @@ Gherkin Beautifier VS Code Plugin is not affilated with cucumber-js project and 
 
 ## Change log
 
+* 2026.1.13
+Update packages
 * 2024.1.10
 Fix: relative tags format broken in 2024.1.6
 * 2024.1.6
@@ -76,12 +78,13 @@ Tags validation
 ## Development
 
 Running extension
-Press F5
+
+```Press F5```
 
 Publishing
-npm i -g vsce@latest
-vsce package
-vsce publish
+1. npm i -g vsce@latest
+2. vsce package
+3. vsce publish
 
 PAT generation
 1. https://dev.azure.com/SiarheiKuchuk/_usersSettings/tokens
