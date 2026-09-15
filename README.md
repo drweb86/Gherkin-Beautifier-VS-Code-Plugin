@@ -46,6 +46,8 @@ Gherkin Beautifier VS Code Plugin is not affilated with cucumber-js project and 
 
 ## Change log
 
+* 2026.9.15
+Update packages
 * 2026.1.13
 Update packages
 * 2024.1.10
@@ -82,9 +84,9 @@ Running extension
 ```Press F5```
 
 Publishing
-1. npm i -g vsce@latest
+1. npm i -g @vscode/vsce@latest (installs the `vsce` command; the legacy `vsce` package on npm is deprecated - do not confuse it with the typo `vcse`, which is an unrelated empty placeholder package)
 2. vsce package
-3. vsce publish
+3. vsce publish --pat <token from PAT generation below> (avoids `vsce login`, whose masked-input prompt can hang when pasting a token in some Windows terminals)
 
 PAT generation
 1. https://dev.azure.com/SiarheiKuchuk/_usersSettings/tokens
@@ -93,7 +95,7 @@ PAT generation
 4. Organization should be 'All accessible organizations'
 4. Click Scopes \ Show all scopes \ Marketplace select Acquire+Publish, 
 5. Click Create...
-6. vsce login 'siarheikuchuk'
+6. Pass the token to `vsce publish --pat <token>`, or set it as the `VSCE_PAT` environment variable before running `vsce publish`
 
 ## Contributions
 Love this extension? [Star](https://github.com/drweb86/Gherkin-Beautifier-VS-Code-Plugin/stargazers) us!

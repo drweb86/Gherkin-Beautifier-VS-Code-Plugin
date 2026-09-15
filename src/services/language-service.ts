@@ -1,4 +1,4 @@
-import * as languages from '../data/gherkin-languages.json'; // Languages were taken from Cucumber project under MIT License https://raw.githubusercontent.com/cucumber/cucumber/master/gherkin/gherkin-languages.json
+import languages from '../data/gherkin-languages.json'; // Languages were taken from Cucumber project under MIT License https://raw.githubusercontent.com/cucumber/cucumber/master/gherkin/gherkin-languages.json
 import { LanguageTerm } from '../models/keywords';
 
 export class LanguageService {

@@ -43,7 +43,7 @@ export class StringUtil {
 
     static trimStart(str: string, chars: string[], max: number): string {
         let start = 0;
-        let end = str.length;
+        const end = str.length;
 
         while (start < end && start < max && chars.indexOf(str[start]) >= 0) {
             ++start;

@@ -1,7 +1,7 @@
 import { Settings } from '../models/settings';
 import { StringUtil } from '../utils/string-util';
 import * as vscode from 'vscode';
-import fs = require('fs');
+import * as fs from 'fs';
 import { KeywordIndent } from '../models/keyword-indent';
 import { LanguageService } from './language-service';
 
